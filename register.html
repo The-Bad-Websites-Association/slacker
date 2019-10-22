@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SLACKER | Register</title>
+    <script src="functions/utility/escapeHtml.js" defer></script>
+    <script src="functions/user/new_user.js" defer></script>
+</head>
+<body>
+<h1>SLACKER</h1>
+<h2>Create an account</h2>
+
+<p id="errorBox"></p>
+
+<form id="newUserForm">
+    <div class="usernameBox">
+        <label for="username">Username:</label>
+        <input id="username" type="text" required/>
+    </div>
+    <div class="passwordOneBox">
+        <label for="pass1">Password:</label>
+        <input id="pass1" type="password" required/>
+    </div>
+    <div class="passwordTwoBox">
+        <label for="pass2">Confirm Password:</label>
+        <input id="pass2" type="password" required/>
+    </div>
+    <div class="createButtonBox">
+        <input type="submit" value="Create Account"/>
+        <p><a href="login.html">Login</a></p>
+    </div>
+</form>
+
+</body>
+</html>
