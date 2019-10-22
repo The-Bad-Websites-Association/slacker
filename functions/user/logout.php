@@ -22,6 +22,8 @@ if((!empty($_POST))) {
 
         $state = set_token_inactive($db, $user, $token);
         if($state === true) {
+            add_msg($db, 1, 'SERVER', 'User ' . $user . ' logged out');
+
             $response['success'] = true;
             $response['message'] = 'user logged out';
             $response['user'] = $user;

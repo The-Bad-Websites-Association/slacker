@@ -34,6 +34,7 @@ if((!empty($_POST))) {
                 $addToken = set_token_active($db, $user, $token);
 
                 if($addToken === true) {
+                    add_msg($db, 1, 'SERVER', 'User ' . $user . ' logged in');
                     $response['success'] = true;
                     $response['message'] = 'Login Success';
                     $response['token'] = $token;
