@@ -68,7 +68,8 @@ function get_current_token(PDO $db,string $user) :string {
     $tokenQuery = "SELECT `token` FROM `users_active` WHERE NOT `ended` = '1' AND `uname` = :user";
     $query = $db->prepare($tokenQuery);
     $query->bindParam(':user', $user, PDO::PARAM_STR);
-    $token = $query->fetch();
+    $query->execute();
+    $token = $query->fetch()['token'];
 
     return $token;
 }
@@ -77,7 +78,7 @@ function update_token(PDO $db, string $oldToken, string $newToken) :bool {
     $updateTokenQuery = "UPDATE `users_active` SET `token` = :newtoken WHERE `token` = :oldtoken AND NOT `ended` = '1';";
     $query = $db->prepare($updateTokenQuery);
     $query->bindParam(':oldtoken', $oldToken, PDO::PARAM_STR);
-    $query->bindParam(':newtokeb', $newToken, PDO::PARAM_STR);
+    $query->bindParam(':newtoken', $newToken, PDO::PARAM_STR);
     $state = $query->execute();
 
     return $state;
