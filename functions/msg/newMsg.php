@@ -31,6 +31,7 @@ if((!empty($_POST))) {
         $newToken = generate_login_token($user);
 
         if($token === $currentToken) {
+            update_token($currentToken, $newToken);
             add_msg($db,$user,$msg,$channel);
 
             $response = [
@@ -48,7 +49,6 @@ if((!empty($_POST))) {
             $response['message'] = 'invalid token' . $currentToken;
             $response['user'] = $user;
 
-            echo $currentToken;
             echo json_encode($response);
         }
     } else {
