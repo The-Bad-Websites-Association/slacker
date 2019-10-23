@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>SLACKER</title>
-    <script src="functions/utility/escapeHtml.js" defer></script>
-    <script src="functions/msg/newMsg.js" defer></script>
     <script src="functions/user/auth.js" defer></script>
+    <script src="functions/utility/escapeHtml.js" defer></script>
+    <script src="functions/msg/get_msgs.js" defer></script>
+    <script src="functions/msg/new_msg.js" defer></script>
+
 
 </head>
 <body style="display: none">
@@ -14,10 +16,14 @@
 
 <p id="errorBox"></p>
 
-<form id="messageBox">
+<form id="message-box">
     <input type="text" id="message"/>
     <input type="submit" value="Send">
 </form>
+
+<div id="message-display" style="width: 100%; height: 400px; overflow: scroll">
+
+</div>
 
 </body>
 </html>

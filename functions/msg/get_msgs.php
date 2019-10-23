@@ -22,7 +22,7 @@ if((!empty($_POST))) {
         $response = [
             'success' => false,
             'message' => 'data received',
-            'message_list' => null,
+            'messageList' => null,
             'token' => null
         ];
 

@@ -1,13 +1,8 @@
-let messageBox = document.getElementById('messageBox')
-let message = document.getElementById('message')
-let errorBox = document.getElementById('errorBox');
-
 messageBox.addEventListener('submit', function (e) {
     e.preventDefault()
-
     let new_message = {
         user: localStorage.getItem('user'),
-        message_data: message.value,
+        message_data: escapeHtml(message.value),
         channel: 1,
         token: localStorage.getItem('tokenActive')
     };
@@ -22,7 +17,7 @@ messageBox.addEventListener('submit', function (e) {
         body: JSON.stringify(new_message)
     };
 
-    fetch('functions/msg/newMsg.php', fetch_data)
+    fetch('functions/msg/new_msg.php', fetch_data)
         .then(response => {
             return response;
         })
@@ -33,6 +28,9 @@ messageBox.addEventListener('submit', function (e) {
             errorBox.innerText = response.message;
             console.log(response.token)
             console.log(localStorage.getItem('tokenActive'))
+            setTimeout(function () {
+                getMessages()
+            },10)
 
     })
 
