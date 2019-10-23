@@ -7,43 +7,37 @@ $obj = json_decode($json, TRUE);
 $_POST = $obj;
 
 if((!empty($_POST))) {
+    if(isset($obj['channel']) && isset($obj['user']) && isset($obj['token'])) {
 
-    $db = connect_db();
+        $db = connect_db();
 
-    $response = [
-        'success' => false,
-        'message' => 'data received',
-        'user' => null,
-        'message_data' => null,
-        'channel' => null,
-        'token' => null
-    ];
-
-    if ((isset($obj['user'])) && (isset($obj['message_data'])) && (isset($obj['token']))) {
-
-        $user = $obj['user'];
-        $msg = $obj['message_data'];
         $channel = $obj['channel'];
+        $user = $obj['user'];
         $token = $obj['token'];
 
-
         $currentToken = get_current_token($db, $user);
+
         $newToken = generate_login_token($user);
+
+        $response = [
+            'success' => false,
+            'message' => 'data received',
+            'message_list' => null,
+            'token' => null
+        ];
+
 
         if($token === $currentToken) {
             update_token($db, $currentToken, $newToken);
-            add_msg($db,$user,$msg,$channel);
+            $messages = get_msgs($db, $channel);
 
-            $response = [
-                'success' => true,
-                'message' => 'message added',
-                'user' => $user,
-                'message_data' => $msg,
-                'channel' => $channel,
-                'token' => $newToken
-            ];
+            $response['success'] = true;
+            $response['message'] = 'messages get performed';
+            $response['message_list'] = $messages;
+            $response['token'] = $newToken;
 
             echo json_encode($response);
+
         } else {
 
             $response['message'] = 'invalid token' . $currentToken;
@@ -59,3 +53,5 @@ if((!empty($_POST))) {
 } else {
     echo 'FORBIDDEN';
 }
+
+

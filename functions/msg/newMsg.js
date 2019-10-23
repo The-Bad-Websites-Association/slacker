@@ -4,19 +4,6 @@ let errorBox = document.getElementById('errorBox');
 
 messageBox.addEventListener('submit', function (e) {
     e.preventDefault()
-    sendMessage()
-        .then(response => response.json())
-        .then(response => {
-            localStorage.setItem('tokenActive', response.token);
-            errorBox.innerText = response.message;
-            console.log(response.token)
-            console.log(localStorage.getItem('tokenActive'))
-
-    })
-
-})
-
-async function sendMessage() {
 
     let new_message = {
         user: localStorage.getItem('user'),
@@ -35,5 +22,18 @@ async function sendMessage() {
         body: JSON.stringify(new_message)
     };
 
-    return await fetch('functions/msg/newMsg.php', fetch_data);
-}
+    fetch('functions/msg/newMsg.php', fetch_data)
+        .then(response => {
+            return response;
+        })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            localStorage.setItem('tokenActive', response.token);
+            errorBox.innerText = response.message;
+            console.log(response.token)
+            console.log(localStorage.getItem('tokenActive'))
+
+    })
+
+})

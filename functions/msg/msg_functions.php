@@ -11,4 +11,12 @@ function add_msg(PDO $db, string $user, string $msg, int $channel = 1) :bool {
     return $state;
 }
 
+function get_msgs(PDO $db, string $channel) :array {
+    $msgGetQuery = "SELECT `id`,`user`,`message` FROM `messages` WHERE `channel_id` = :channel;";
+    $query = $db->prepare($msgGetQuery);
+    $query->bindParam(':channel', $channel, PDO::PARAM_INT);
+    $query->execute();
+    $msgs = $query->fetchAll();
 
+    return $msgs;
+}
