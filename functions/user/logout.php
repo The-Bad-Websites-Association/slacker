@@ -21,6 +21,7 @@ if((!empty($_POST))) {
         $token = $obj['token'];
 
         $state = set_token_inactive($db, $user, $token);
+        add_msg($db, 1, 'SERVER', 'User ' . $user . ' logged out');
         if($state === true) {
             add_msg($db, 1, 'SERVER', 'User ' . $user . ' logged out');
 
