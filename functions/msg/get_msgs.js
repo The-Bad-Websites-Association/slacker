@@ -2,7 +2,10 @@ let messageBox = document.getElementById('message-box')
 let message = document.getElementById('message')
 let errorBox = document.getElementById('errorBox');
 let messageDisplay = document.getElementById('message-display');
+let Display = document.getElementById('display');
 let messages = null;
+
+Display.scrollTop = Display.scrollHeight;
 
 function getMessages(){
     messageDisplay.innerHTML = ''
@@ -37,6 +40,7 @@ function getMessages(){
             console.log(response)
             setTimeout(function () {
                 displayMessages()
+                Display.scrollTop = Display.scrollHeight;
             },10)
 
         })
@@ -45,7 +49,7 @@ function getMessages(){
 
 function displayMessages() {
     messages.forEach(function (messageItem) {
-        messageDisplay.innerHTML += '<p><strong>' + messageItem.user + '</strong>: '+ messageItem.message + '</p>'
+        messageDisplay.innerHTML += '<tr><td><strong>' + messageItem.user + '</strong>: '+ messageItem.message + '</td></tr>'
     })
 }
 
