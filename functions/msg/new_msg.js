@@ -31,7 +31,7 @@ messageBox.addEventListener('submit', function (e) {
             setTimeout(function () {
                 getMessages()
             },10)
-
+// TODO: Seperate fetch request to update.php to update messages on all clients
     })
 
 })

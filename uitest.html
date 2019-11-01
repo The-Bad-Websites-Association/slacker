@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SLACKER</title>
+    <script src="functions/user/auth.js" defer></script>
+    <script src="functions/utility/escapeHtml.js" defer></script>
+    <script src="functions/msg/get_msgs.js" defer></script>
+    <script src="functions/msg/new_msg.js" defer></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+
+</head>
+<body>
+
+<div class="global-container">
+    <H1>SLACKER</H1>
+
+    <div class="verticalBox sidebar">
+        <div class="sidebar-topbar">
+            <h2><span id="username"></span> | <a href="#" id="logout">Logout</a></h2>
+        </div>
+        <div class="sidebar-content"></div>
+    </div>
+    <div class="verticalBox main-container">
+        <div class="main-topbar"><p id="errorBox"></p></div>
+        <div id="context">
+                <table id="message-display" style="vertical-align: bottom"></table>
+        </div>
+        <div class="main-bottombar">
+            <form id="message-box">
+                <input type="text" id="message"/>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: none;
+}
+
+div {
+    margin: 0;
+}
+
+.global-container {
+
+}
+
+.verticalBox {
+    border: black 1px solid;
+    height: 500px;
+    float: left;
+}
+
+.sidebar {
+    display: inline-block;
+    min-width: 100px;
+    max-width: 275px;
+    overflow: auto;
+}
+
+.sidebar h2 {
+    margin: 0px 5px 0px 5px;
+}
+
+.main-container {
+    display: inline-block;
+    max-width: 80%;
+    min-width: 600px;
+}
+
+.main-container div {
+    border: grey 0.5px solid;
+}
+
+#context {
+    overflow-x: scroll;
+    height: 428px;
+}

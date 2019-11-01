@@ -2,7 +2,7 @@ let messageBox = document.getElementById('message-box')
 let message = document.getElementById('message')
 let errorBox = document.getElementById('errorBox');
 let messageDisplay = document.getElementById('message-display');
-let Display = document.getElementById('display');
+let Display = document.getElementById('context');
 let messages = null;
 
 Display.scrollTop = Display.scrollHeight;
@@ -54,3 +54,14 @@ function displayMessages() {
 }
 
 getMessages()
+
+const evtSource_msg = new EventSource("functions/msg/get_msgs.php");
+const evtSource_user = new EventSource("functions/user/login.php");
+
+evtSource_msg.addEventListener("update", function () {
+    getMessages()
+})
+
+evtSource_user.addEventListener("update", function () {
+    getMessages()
+})

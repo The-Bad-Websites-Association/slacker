@@ -20,3 +20,23 @@ function get_msgs(PDO $db, string $channel) :array {
 
     return $msgs;
 }
+
+function update() {
+    sleep(1);
+
+    ob_flush();
+    ob_clean();
+    flush();
+
+    header("Cache-Control: no-cache");
+    header("Content-Type: text/event-stream\n\n");
+
+    echo "event: update\n";
+    echo 'data: {}';
+    echo "\n\n";
+
+    ob_end_flush();
+    ob_flush();
+    flush();
+
+}

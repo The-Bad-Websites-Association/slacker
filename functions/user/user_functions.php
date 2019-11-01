@@ -63,6 +63,18 @@ function set_token_inactive(PDO $db, string $user, string $token) :bool {
 
 }
 
+function set_token_inactive_all(PDO $db, string $user) :bool {
+
+    $tokenInactiveQuery = "UPDATE `users_active` SET `ended` = '1', `time_out` = :timeval WHERE `uname` = :user;";
+    $query = $db->prepare($tokenInactiveQuery);
+    $query->bindParam(':timeval', date('Y-n-d H:i:s'), PDO::PARAM_STR);
+    $query->bindParam(':user', $user, PDO::PARAM_STR);
+    $state = $query->execute();
+
+    return $state;
+
+}
+
 function get_current_token(PDO $db,string $user) :string {
 
     $tokenQuery = "SELECT `token` FROM `users_active` WHERE NOT `ended` = '1' AND `uname` = :user";

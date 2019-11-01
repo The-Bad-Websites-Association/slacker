@@ -39,7 +39,7 @@ if((!empty($_POST))) {
             echo json_encode($response);
 
         } else {
-
+            set_token_inactive_all($db, $user);
             $response['message'] = 'invalid token' . $currentToken;
             $response['user'] = $user;
 
